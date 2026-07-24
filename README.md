@@ -96,7 +96,7 @@ FeedBan stores your filters and settings in your userscript manager. It doesn’
 
    &rlm;![صفحه نصب فیدبان در Tampermonkey](./assets/feedban-userscript-install.png)
 
-4. &rlm;برو به [x.com](https://x.com/) و صفحه رو تازه‌سازی کن.
+4. &rlm;برو به [x.com](https://x.com/) و صفحه رو refresh کن.
 
 &rlm;همین! حالا باید پنل فیدبان رو پایین سمت راست صفحه ببینی.
 
@@ -117,7 +117,7 @@ FeedBan stores your filters and settings in your userscript manager. It doesn’
 
 ### اگه چیزی درست کار نکرد
 
-- &rlm;**پنل رو نمی‌بینی؟** مطمئن شو فیدبان توی Tampermonkey روشنه و بعد X رو تازه‌سازی کن.
+- &rlm;**پنل رو نمی‌بینی؟** مطمئن شو فیدبان توی Tampermonkey روشنه و بعد X رو refresh کن.
 - &rlm;**متن پیدا می‌شه ولی ایموجی نه؟** ایموجی باید توی اسم یا بیوی قابل‌مشاهده باشه، نه فقط داخل پست.
 - &rlm;**X روی صفحه شروع گیر کرد؟** فیدبان رو خاموش کن، تب رو ببند و X رو توی یه تب جدید باز کن.
 - &rlm;**حساب رنگی شد ولی بلاک نشد؟** حالت آزمایشی رو خاموش کن و دلیلش رو توی **Recent activity** ببین.
