@@ -35,7 +35,7 @@ FeedBan checks names and bios—not the text inside posts.
 
 4. Open [x.com](https://x.com/) and refresh the page.
 
-That’s it—the FeedBan panel should appear in the bottom-right corner.
+That’s it. The FeedBan panel should appear in the bottom-right corner.
 
 If the install link only shows code, make sure Tampermonkey is installed and enabled, then click it again.
 
