@@ -37,6 +37,8 @@ FeedBan checks names and bios—not the text inside posts.
 
 That’s it. The FeedBan panel should appear in the bottom-right corner.
 
+![FeedBan panel in the bottom-right corner of X](./assets/feedban-panel-preview.png)
+
 If the install link only shows code, make sure Tampermonkey is installed and enabled, then click it again.
 
 ### Try it safely
@@ -99,6 +101,8 @@ FeedBan stores your filters and settings in your userscript manager. It doesn’
 4. &rlm;برو به [x.com](https://x.com/) و صفحه رو refresh کن.
 
 &rlm;همین! حالا باید پنل فیدبان رو پایین سمت راست صفحه ببینی.
+
+&rlm;![پنل فیدبان در پایین سمت راست صفحه X](./assets/feedban-panel-preview.png)
 
 &rlm;اگه لینک نصب فقط یه صفحه کد نشون داد، مطمئن شو Tampermonkey نصب و روشنه و دوباره روی لینک بزن.
 
