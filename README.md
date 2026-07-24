@@ -36,12 +36,6 @@ You only need two clicks after installing Tampermonkey:
 
 You should now see the **FeedBan 🛡️** panel in the bottom-right corner.
 
-You can also scan this QR code after installing a userscript manager:
-
-<a href="https://raw.githubusercontent.com/geekzahra/FeedBan/master/feedban.user.js">
-  <img src="./assets/feedban-install-qr.png" width="220" alt="QR code to install FeedBan">
-</a>
-
 If clicking the install link only shows a page of text, make sure Tampermonkey is installed and enabled, then click the link again. The same install link also works with Violentmonkey.
 
 FeedBan includes an update address, so your userscript manager can check this repository for newer versions.
@@ -157,12 +151,6 @@ FeedBan does not collect X authorization tokens and does not send your filters t
 4. وارد [x.com](https://x.com/) شوید و صفحه را تازه‌سازی کنید.
 
 حالا باید پنل **فیدبان 🛡️** را پایین سمت راست صفحه ببینید.
-
-بعد از نصب یک افزونه مدیریت اسکریپت، می‌توانید این کد QR را هم اسکن کنید:
-
-<a href="https://raw.githubusercontent.com/geekzahra/FeedBan/master/feedban.user.js">
-  <img src="./assets/feedban-install-qr.png" width="220" alt="کد QR نصب فیدبان">
-</a>
 
 اگر با زدن لینک نصب فقط یک صفحه پر از متن دیدید، مطمئن شوید Tampermonkey نصب و روشن است و دوباره روی لینک بزنید. همین لینک با Violentmonkey هم کار می‌کند.
 
