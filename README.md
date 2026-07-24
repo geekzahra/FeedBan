@@ -4,244 +4,104 @@
 
 ## English
 
-FeedBan is a small helper for X (Twitter). You give it an emoji or phrase, and it looks for that match in account display names and bios.
+FeedBan helps clean up your X (Twitter) feed. Add an emoji or phrase, and it’ll look for it in account display names and visible bios.
 
-It can work in two ways:
+It works in two modes:
 
-- **Dry Run:** safely highlights matches without blocking anyone.
-- **Automatic mode:** uses X’s own menus to block matched accounts.
+- **Dry Run:** highlights matches without blocking anyone.
+- **Automatic:** tries to block matched accounts through X’s own menus.
 
-FeedBan works on both `x.com` and `twitter.com`.
+FeedBan checks names and bios—not the text inside posts.
 
-> **Please start with Dry Run.** X does not publish a guaranteed safe speed for automatic blocking, and its rules may restrict scripted actions on the website. Automatic blocking can put your account at risk. No delay can make it completely safe.
+> **Quick heads-up:** Start with Dry Run. X doesn’t provide a guaranteed safe limit for automatic blocking, and scripted actions may put your account at risk.
 
-### What FeedBan checks
+### Install
 
-FeedBan checks:
-
-- Account display names
-- Bios that are currently visible on the page or in a user card
-- Regular text, emojis, flags, and joined emoji sequences
-
-FeedBan does **not** check the text inside posts. For example, if someone uses 🎒 in a post but not in their display name or bio, FeedBan will not match that account.
-
-### Easiest installation
-
-You only need two clicks after installing Tampermonkey:
-
-1. Install **Tampermonkey** using the link for your browser:
+1. Install **Tampermonkey** for your browser:
    - [Google Chrome](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
    - [Mozilla Firefox](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/)
    - [Microsoft Edge](https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd)
    - [Safari on Mac](https://apps.apple.com/us/app/tampermonkey/id6738342400)
    - [Opera — Tampermonkey Beta](https://addons.opera.com/en/extensions/details/tampermonkey-beta/)
 2. Click **[🛡️ Install FeedBan](https://raw.githubusercontent.com/geekzahra/FeedBan/master/feedban.user.js)**.
-3. Tampermonkey will open an installation page. Click **Install**.
+3. Tampermonkey will open. Click **Install**.
 4. Open [x.com](https://x.com/) and refresh the page.
 
-You should now see the **FeedBan 🛡️** panel in the bottom-right corner.
+That’s it—the FeedBan panel should appear in the bottom-right corner.
 
-Click **فا** in the panel header for the full Persian, right-to-left interface. Click **EN** to switch back to English and left-to-right layout. FeedBan remembers your choice.
+If the install link only shows code, make sure Tampermonkey is installed and enabled, then click it again.
 
-If clicking the install link only shows a page of text, make sure Tampermonkey is installed and enabled, then click the link again. The same install link also works with Violentmonkey.
+### Try it safely
 
-FeedBan includes an update address, so your userscript manager can check this repository for newer versions.
+1. Keep **Test / Dry Run** on.
+2. Add part of a visible account name or an emoji from that name.
+3. A match should get a yellow outline and appear in **Recent activity**.
+4. Once your filters look right, you can turn Dry Run off—but automatic blocking is still at your own risk.
 
-### Your first safe test
+Use specific filters. Short, common words can match lots of accounts.
 
-Dry Run is switched on the first time FeedBan starts, so nobody should be blocked during this test.
+### Language
 
-1. Make sure **Automatic scanning** is on.
-2. Make sure **Test / Dry Run** is on.
-3. In the Filters box, enter part of a display name you can currently see on X.
-4. Click **Add**.
-5. The matching account should get a yellow outline and a light red background.
-6. Open **Recent activity** to see the match.
+Click **فا** for the Persian RTL interface. Click **EN** to switch back to English LTR. FeedBan remembers your choice.
 
-You can test an emoji in the same way. The emoji must appear in the account’s display name or visible bio—not only inside a post.
+### Having trouble?
 
-### Using filters
+- **No panel?** Make sure FeedBan is enabled in Tampermonkey, then refresh X.
+- **Text works but an emoji doesn’t?** The emoji must be in the display name or visible bio, not just a post.
+- **X gets stuck loading?** Disable FeedBan, close that tab, and open X in a new one.
+- **Highlighted but not blocked?** Turn Dry Run off and check **Recent activity** for the reason.
 
-- Type an emoji or phrase into the box and click **Add**.
-- Matching is not sensitive to uppercase or lowercase letters.
-- To remove a filter, click the small `×` beside it.
-- Keep filters specific. A short, common word may match many accounts.
-
-### Turning automatic blocking on
-
-Only do this after your filters work correctly in Dry Run.
-
-1. Remove any broad or accidental filters.
-2. Switch **Test / Dry Run** off.
-3. Leave **Automatic scanning** on.
-
-FeedBan will try to open X’s menu, choose Block, and confirm it. The counters and Recent activity list will show completed attempts.
-
-FeedBan includes a temporary safety pause when too many blocks happen close together. This reduces risk, but it does not guarantee that X will accept the automation.
-
-### Pause or remove FeedBan
-
-- To pause scanning, switch **Automatic scanning** off.
-- To hide most of the panel, click the `−` button.
-- To disable FeedBan completely, open Tampermonkey and switch FeedBan off.
-- To remove it, open the Tampermonkey dashboard and delete FeedBan.
-
-Disabling the script does not stop code already running in an open tab. Close or refresh existing X tabs after disabling it.
-
-### If something is not working
-
-**The panel does not appear**
-
-- Make sure FeedBan is enabled in Tampermonkey.
-- Make sure you are on `x.com` or `twitter.com`.
-- Refresh the page.
-
-**Text matches, but an emoji does not**
-
-- Make sure the emoji is in the display name or visible bio.
-- Replace your installed script with the newest copy of `feedban.user.js`.
-- Save it and refresh X.
-
-**A match is highlighted but not blocked**
-
-- Check that Dry Run is off.
-- X may have changed its menus, or the block command may not be available on that card.
-- Look at Recent activity for the reason.
-
-**X becomes slow or stays on its loading logo**
-
-- Disable FeedBan.
-- Close the stuck X tab completely.
-- Open X in a new tab.
-- Make sure you are using the latest version of FeedBan before enabling it again.
-
-Messages in the browser console about ads, Content Security Policy, or `beforeinstallprompt` usually come from X itself and are not FeedBan errors.
-
-### Privacy
-
-FeedBan runs in your browser. Its settings, filters, counters, and activity history are stored by your userscript manager.
-
-FeedBan does not collect X authorization tokens and does not send your filters to a separate FeedBan server.
+FeedBan stores your filters and settings in your userscript manager. It doesn’t collect your X login token or send your filters to a FeedBan server.
 
 ---
 
 ## فارسی
 
-فیدبان یک ابزار کوچک برای X (توییتر) است. شما یک ایموجی یا عبارت به آن می‌دهید و فیدبان همان مورد را داخل نام نمایشی یا بیوی حساب‌ها پیدا می‌کند.
+فیدبان کمک می‌کنه فید X (توییتر) رو مرتب‌تر کنی. کافیه یه ایموجی یا عبارت بهش بدی تا اون رو توی اسم نمایشی یا بیوی قابل‌مشاهده حساب‌ها پیدا کنه.
 
-فیدبان دو حالت دارد:
+دو حالت داره:
 
-- **حالت آزمایشی (Dry Run):** فقط حساب‌های پیدا شده را رنگی می‌کند و کسی را بلاک نمی‌کند.
-- **حالت خودکار:** از منوهای خود X استفاده می‌کند تا حساب‌های پیدا شده را بلاک کند.
+- **حالت آزمایشی:** فقط موارد پیدا شده رو رنگی می‌کنه و کسی بلاک نمی‌شه.
+- **حالت خودکار:** سعی می‌کنه با منوهای خود X حساب پیدا شده رو بلاک کنه.
 
-این ابزار هم روی `x.com` و هم روی `twitter.com` کار می‌کند.
+فیدبان فقط اسم و بیو رو بررسی می‌کنه، نه متن داخل پست‌ها رو.
 
-> **لطفاً اول با حالت آزمایشی شروع کنید.** X سرعت تضمین‌شده‌ای برای بلاک خودکار اعلام نکرده و قوانینش ممکن است استفاده از اسکریپت برای انجام خودکار کارها در سایت را محدود کند. بلاک خودکار می‌تواند برای حساب شما ریسک داشته باشد و هیچ فاصله زمانی‌ای آن را کاملاً امن نمی‌کند.
+> **یه نکته مهم:** اول با حالت آزمایشی شروع کن. X هیچ سرعت تضمین‌شده‌ای برای بلاک خودکار اعلام نکرده و کارهای خودکار ممکنه برای حسابت ریسک داشته باشن.
 
-### فیدبان دقیقاً چه چیزهایی را بررسی می‌کند؟
+### نصب
 
-فیدبان این موارد را بررسی می‌کند:
-
-- نام نمایشی حساب
-- بیویی که در همان لحظه داخل صفحه یا کارت کاربر دیده می‌شود
-- متن معمولی، ایموجی، پرچم و ایموجی‌های ترکیبی
-
-فیدبان متن داخل پست‌ها را بررسی **نمی‌کند**. مثلاً اگر کسی 🎒 را فقط داخل یک پست نوشته باشد، ولی این ایموجی در نام یا بیوی او نباشد، آن حساب پیدا نمی‌شود.
-
-### نصب خیلی ساده
-
-بعد از نصب Tampermonkey فقط با دو کلیک کار تمام است:
-
-1. با توجه به مرورگرتان، افزونه **Tampermonkey** را از لینک مناسب نصب کنید:
+1. **Tampermonkey** رو برای مرورگرت نصب کن:
    - [گوگل کروم](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
    - [موزیلا فایرفاکس](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/)
    - [مایکروسافت اج](https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd)
    - [سافاری در مک](https://apps.apple.com/us/app/tampermonkey/id6738342400)
    - [اپرا — نسخه بتای Tampermonkey](https://addons.opera.com/en/extensions/details/tampermonkey-beta/)
-2. روی **[🛡️ نصب فیدبان](https://raw.githubusercontent.com/geekzahra/FeedBan/master/feedban.user.js)** بزنید.
-3. صفحه نصب Tampermonkey باز می‌شود؛ روی **Install** بزنید.
-4. وارد [x.com](https://x.com/) شوید و صفحه را تازه‌سازی کنید.
+2. روی **[🛡️ نصب فیدبان](https://raw.githubusercontent.com/geekzahra/FeedBan/master/feedban.user.js)** بزن.
+3. صفحه Tampermonkey که باز شد، **Install** رو بزن.
+4. برو به [x.com](https://x.com/) و صفحه رو تازه‌سازی کن.
 
-حالا باید پنل **فیدبان 🛡️** را پایین سمت راست صفحه ببینید.
+همین! حالا باید پنل فیدبان رو پایین سمت راست صفحه ببینی.
 
-برای نمایش کامل فارسی و راست‌به‌چپ، روی **فا** در بالای پنل بزنید. برای برگشتن به زبان انگلیسی و حالت چپ‌به‌راست، روی **EN** بزنید. فیدبان انتخاب شما را به خاطر می‌سپارد.
+اگه لینک نصب فقط یه صفحه کد نشون داد، مطمئن شو Tampermonkey نصب و روشنه و دوباره روی لینک بزن.
 
-اگر با زدن لینک نصب فقط یک صفحه پر از متن دیدید، مطمئن شوید Tampermonkey نصب و روشن است و دوباره روی لینک بزنید. همین لینک با Violentmonkey هم کار می‌کند.
+### یه تست امن
 
-فیدبان آدرس به‌روزرسانی را هم داخل خودش دارد تا افزونه مدیریت اسکریپت بتواند نسخه‌های جدیدتر را از همین مخزن بررسی کند.
+1. گزینه **Test / Dry Run** رو روشن نگه دار.
+2. بخشی از اسم یه حساب یا ایموجی داخل اسمش رو به فیلترها اضافه کن.
+3. دور حساب پیدا شده باید زرد بشه و نتیجه توی **Recent activity** بیاد.
+4. وقتی مطمئن شدی فیلترها درست کار می‌کنن، می‌تونی حالت آزمایشی رو خاموش کنی؛ البته بلاک خودکار همچنان با مسئولیت خودته.
 
-### اولین تست امن
+فیلترها رو دقیق انتخاب کن؛ کلمه‌های کوتاه و رایج ممکنه کلی حساب رو پیدا کنن.
 
-فیدبان در اولین اجرا با حالت آزمایشی روشن می‌شود؛ پس در این تست نباید کسی بلاک شود.
+### زبان
 
-1. مطمئن شوید **Automatic scanning** روشن است.
-2. مطمئن شوید **Test / Dry Run** هم روشن است.
-3. داخل بخش Filters قسمتی از نام نمایشی یکی از حساب‌هایی را بنویسید که الان در X می‌بینید.
-4. روی **Add** بزنید.
-5. دور حساب پیدا شده باید یک خط زرد و پس‌زمینه قرمز کم‌رنگ دیده شود.
-6. بخش **Recent activity** را باز کنید تا نتیجه را ببینید.
+برای محیط فارسی و راست‌به‌چپ روی **فا** بزن. برای برگشتن به انگلیسی و چپ‌به‌راست هم **EN** رو بزن. فیدبان انتخابت رو یادش می‌مونه.
 
-برای ایموجی هم می‌توانید همین کار را انجام دهید. ایموجی باید در نام نمایشی یا بیوی قابل‌مشاهده حساب باشد، نه اینکه فقط داخل متن یک پست آمده باشد.
+### اگه چیزی درست کار نکرد
 
-### کار با فیلترها
+- **پنل رو نمی‌بینی؟** مطمئن شو فیدبان توی Tampermonkey روشنه و بعد X رو تازه‌سازی کن.
+- **متن پیدا می‌شه ولی ایموجی نه؟** ایموجی باید توی اسم یا بیوی قابل‌مشاهده باشه، نه فقط داخل پست.
+- **X روی صفحه شروع گیر کرد؟** فیدبان رو خاموش کن، تب رو ببند و X رو توی یه تب جدید باز کن.
+- **حساب رنگی شد ولی بلاک نشد؟** حالت آزمایشی رو خاموش کن و دلیلش رو توی **Recent activity** ببین.
 
-- ایموجی یا عبارت موردنظرتان را داخل کادر بنویسید و **Add** را بزنید.
-- حروف بزرگ و کوچک تفاوتی ندارند.
-- برای پاک کردن هر فیلتر، روی علامت `×` کنار آن بزنید.
-- بهتر است عبارت‌های دقیق انتخاب کنید. یک کلمه کوتاه و رایج ممکن است تعداد زیادی حساب را پیدا کند.
-
-### روشن کردن بلاک خودکار
-
-فقط وقتی این کار را انجام دهید که فیلترها را در حالت آزمایشی امتحان کرده‌اید و نتیجه درست بوده است.
-
-1. فیلترهای خیلی کلی یا اشتباهی را پاک کنید.
-2. گزینه **Test / Dry Run** را خاموش کنید.
-3. گزینه **Automatic scanning** را روشن نگه دارید.
-
-فیدبان تلاش می‌کند منوی X را باز کند، گزینه Block را بزند و آن را تأیید کند. تعداد بلاک‌ها و نتیجه تلاش‌ها در شمارنده‌ها و بخش Recent activity نمایش داده می‌شود.
-
-اگر در زمان کوتاه تعداد زیادی بلاک انجام شود، فیدبان موقتاً کار را متوقف می‌کند. این توقف ریسک را کمتر می‌کند، اما تضمین نمی‌کند که X این نوع استفاده خودکار را بپذیرد.
-
-### توقف یا حذف فیدبان
-
-- برای توقف بررسی صفحه، **Automatic scanning** را خاموش کنید.
-- برای کوچک کردن پنل، روی دکمه `−` بزنید.
-- برای غیرفعال کردن کامل، Tampermonkey را باز کنید و فیدبان را خاموش کنید.
-- برای حذف، وارد داشبورد Tampermonkey شوید و فیدبان را پاک کنید.
-
-خاموش کردن اسکریپت، کدی را که از قبل در یک تب باز اجرا شده متوقف نمی‌کند. بعد از خاموش کردن، تب‌های باز X را ببندید یا تازه‌سازی کنید.
-
-### اگر چیزی درست کار نمی‌کند
-
-**پنل دیده نمی‌شود**
-
-- مطمئن شوید فیدبان داخل Tampermonkey روشن است.
-- مطمئن شوید در `x.com` یا `twitter.com` هستید.
-- صفحه را تازه‌سازی کنید.
-
-**عبارت‌ها پیدا می‌شوند ولی ایموجی پیدا نمی‌شود**
-
-- مطمئن شوید ایموجی داخل نام نمایشی یا بیوی قابل‌مشاهده است.
-- کد نصب‌شده را با جدیدترین نسخه فایل `feedban.user.js` جایگزین کنید.
-- ذخیره را بزنید و X را تازه‌سازی کنید.
-
-**حساب رنگی می‌شود ولی بلاک نمی‌شود**
-
-- مطمئن شوید Dry Run خاموش است.
-- ممکن است X منوهایش را تغییر داده باشد یا گزینه بلاک در آن کارت وجود نداشته باشد.
-- دلیل ثبت‌شده را در Recent activity ببینید.
-
-**X کند می‌شود یا روی لوگوی شروع می‌ماند**
-
-- فیدبان را خاموش کنید.
-- تب گیرکرده X را کامل ببندید.
-- X را در یک تب جدید باز کنید.
-- قبل از روشن کردن دوباره، مطمئن شوید جدیدترین نسخه فیدبان را دارید.
-
-پیام‌های کنسول مرورگر درباره تبلیغات، Content Security Policy یا `beforeinstallprompt` معمولاً مربوط به خود X هستند و خطای فیدبان محسوب نمی‌شوند.
-
-### حریم خصوصی
-
-فیدبان داخل مرورگر شما اجرا می‌شود. تنظیمات، فیلترها، شمارنده‌ها و سابقه فعالیت آن توسط افزونه مدیریت اسکریپت ذخیره می‌شوند.
-
-فیدبان توکن ورود X را جمع‌آوری نمی‌کند و فیلترهای شما را به سرور جداگانه‌ای برای فیدبان نمی‌فرستد.
+فیدبان فیلترها و تنظیماتت رو داخل افزونه مدیریت اسکریپت نگه می‌داره. توکن ورود X رو جمع نمی‌کنه و فیلترهات رو هم به سرور جداگانه‌ای نمی‌فرسته.
