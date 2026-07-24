@@ -41,14 +41,20 @@ That’s it. The FeedBan panel should appear in the bottom-right corner.
 
 If the install link only shows code, make sure Tampermonkey is installed and enabled, then click it again.
 
-### Try it safely
+### How to use it
 
-1. Keep **Test / Dry Run** on.
-2. Add part of a visible account name or an emoji from that name.
-3. A match should get a yellow outline and appear in **Recent activity**.
-4. Once your filters look right, you can turn Dry Run off—but automatic blocking is still at your own risk.
+![FeedBan controls](./assets/feedban-controls.png)
 
-Use specific filters. Short, common words can match lots of accounts.
+- **Automatic scanning** pauses or resumes FeedBan.
+- **Test / Dry Run** highlights matches without blocking anyone.
+- Under **Filters**, type an emoji or phrase and click **Add**. Click `×` on a filter to remove it.
+- The two counters show blocks from this session and your total blocks.
+- Open **Recent activity** to see matches, blocks, or failed attempts.
+- Use **فا / EN** to change the language and `− / +` to minimize or expand the panel.
+
+For a safe first test, leave Dry Run on and add part of a visible display name or an emoji from that name. A match should get a yellow outline. Only turn Dry Run off after checking your filters, and remember that automatic blocking is still at your own risk.
+
+Keep filters specific—short, common words can match lots of accounts.
 
 ### Language
 
@@ -106,12 +112,18 @@ FeedBan stores your filters and settings in your userscript manager. It doesn’
 
 &rlm;اگه لینک نصب فقط یه صفحه کد نشون داد، مطمئن شو Tampermonkey نصب و روشنه و دوباره روی لینک بزن.
 
-### یه تست امن
+### چطور ازش استفاده کنم؟
 
-1. &rlm;گزینه **Test / Dry Run** رو روشن نگه دار.
-2. &rlm;بخشی از اسم یه حساب یا ایموجی داخل اسمش رو به فیلترها اضافه کن.
-3. &rlm;دور حساب پیدا شده باید زرد بشه و نتیجه توی **Recent activity** بیاد.
-4. &rlm;وقتی مطمئن شدی فیلترها درست کار می‌کنن، می‌تونی حالت آزمایشی رو خاموش کنی؛ البته بلاک خودکار همچنان با مسئولیت خودته.
+&rlm;![بخش‌های مختلف پنل فیدبان](./assets/feedban-controls.png)
+
+- &rlm;با **بررسی خودکار** می‌تونی فیدبان رو موقتاً متوقف یا دوباره روشن کنی.
+- &rlm;**حالت آزمایشی** فقط حساب‌های پیدا شده رو رنگی می‌کنه و کسی رو بلاک نمی‌کنه.
+- &rlm;توی بخش **فیلترها** یه ایموجی یا عبارت بنویس و **افزودن** رو بزن. برای پاک کردن هر فیلتر هم روی `×` بزن.
+- &rlm;دو شمارنده، تعداد بلاک‌های همین نشست و مجموع بلاک‌ها رو نشون می‌دن.
+- &rlm;بخش **فعالیت‌های اخیر** نتیجه پیدا شدن حساب‌ها، بلاک‌ها و خطاها رو نشون می‌ده.
+- &rlm;با **فا / EN** زبان رو عوض کن و با `− / +` پنل رو کوچیک یا باز کن.
+
+&rlm;برای اولین تست، حالت آزمایشی رو روشن نگه دار و بخشی از اسم نمایشی یه حساب یا ایموجی داخل اسمش رو اضافه کن. دور حساب پیدا شده باید زرد بشه. فقط وقتی فیلترها رو بررسی کردی حالت آزمایشی رو خاموش کن؛ بلاک خودکار همچنان با مسئولیت خودته.
 
 &rlm;فیلترها رو دقیق انتخاب کن؛ کلمه‌های کوتاه و رایج ممکنه کلی حساب رو پیدا کنن.
 
