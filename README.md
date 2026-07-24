@@ -27,20 +27,24 @@ FeedBan does **not** check the text inside posts. For example, if someone uses �
 
 ### Easiest installation
 
-You only need to do this once.
+You only need two clicks after installing Tampermonkey:
 
 1. Install **Tampermonkey** in your browser from [tampermonkey.net](https://www.tampermonkey.net/).
-2. Click the Tampermonkey icon near your browser’s address bar.
-3. Choose **Create a new script**.
-4. You will see a page filled with some starter text. Select all of it and delete it.
-5. Open the file [`feedban.user.js`](./feedban.user.js), select everything inside it, and copy it.
-6. Paste it into the empty Tampermonkey page.
-7. Press `Ctrl + S` on Windows or `Command + S` on Mac.
-8. Open [x.com](https://x.com/) and refresh the page.
+2. Click **[🛡️ Install FeedBan](https://raw.githubusercontent.com/geekzahra/FeedBan/master/feedban.user.js)**.
+3. Tampermonkey will open an installation page. Click **Install**.
+4. Open [x.com](https://x.com/) and refresh the page.
 
 You should now see the **FeedBan 🛡️** panel in the bottom-right corner.
 
-If you prefer Violentmonkey, the steps are almost the same: create a new script, replace its starter text with `feedban.user.js`, and save.
+You can also scan this QR code after installing a userscript manager:
+
+<a href="https://raw.githubusercontent.com/geekzahra/FeedBan/master/feedban.user.js">
+  <img src="./assets/feedban-install-qr.png" width="220" alt="QR code to install FeedBan">
+</a>
+
+If clicking the install link only shows a page of text, make sure Tampermonkey is installed and enabled, then click the link again. The same install link also works with Violentmonkey.
+
+FeedBan includes an update address, so your userscript manager can check this repository for newer versions.
 
 ### Your first safe test
 
@@ -145,20 +149,24 @@ FeedBan does not collect X authorization tokens and does not send your filters t
 
 ### نصب خیلی ساده
 
-این کار را فقط یک بار انجام می‌دهید.
+بعد از نصب Tampermonkey فقط با دو کلیک کار تمام است:
 
 1. از سایت [tampermonkey.net](https://www.tampermonkey.net/) افزونه **Tampermonkey** را روی مرورگرتان نصب کنید.
-2. کنار نوار آدرس مرورگر روی آیکن Tampermonkey بزنید.
-3. گزینه **Create a new script** را انتخاب کنید.
-4. صفحه‌ای باز می‌شود که مقداری متن آماده داخلش هست. همه آن متن را انتخاب و پاک کنید.
-5. فایل [`feedban.user.js`](./feedban.user.js) را باز کنید، همه محتوایش را انتخاب کنید و کپی بگیرید.
-6. متن کپی‌شده را داخل صفحه خالی Tampermonkey بچسبانید.
-7. در ویندوز `Ctrl + S` و در مک `Command + S` را بزنید.
-8. وارد [x.com](https://x.com/) شوید و صفحه را تازه‌سازی کنید.
+2. روی **[🛡️ نصب فیدبان](https://raw.githubusercontent.com/geekzahra/FeedBan/master/feedban.user.js)** بزنید.
+3. صفحه نصب Tampermonkey باز می‌شود؛ روی **Install** بزنید.
+4. وارد [x.com](https://x.com/) شوید و صفحه را تازه‌سازی کنید.
 
 حالا باید پنل **فیدبان 🛡️** را پایین سمت راست صفحه ببینید.
 
-اگر از Violentmonkey استفاده می‌کنید هم تقریباً همین مراحل را انجام دهید: یک اسکریپت جدید بسازید، متن آماده آن را با محتوای `feedban.user.js` عوض کنید و ذخیره را بزنید.
+بعد از نصب یک افزونه مدیریت اسکریپت، می‌توانید این کد QR را هم اسکن کنید:
+
+<a href="https://raw.githubusercontent.com/geekzahra/FeedBan/master/feedban.user.js">
+  <img src="./assets/feedban-install-qr.png" width="220" alt="کد QR نصب فیدبان">
+</a>
+
+اگر با زدن لینک نصب فقط یک صفحه پر از متن دیدید، مطمئن شوید Tampermonkey نصب و روشن است و دوباره روی لینک بزنید. همین لینک با Violentmonkey هم کار می‌کند.
+
+فیدبان آدرس به‌روزرسانی را هم داخل خودش دارد تا افزونه مدیریت اسکریپت بتواند نسخه‌های جدیدتر را از همین مخزن بررسی کند.
 
 ### اولین تست امن
 

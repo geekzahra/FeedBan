@@ -1,13 +1,15 @@
 // ==UserScript==
 // @name         FeedBan
 // @namespace    https://github.com/feedban/userscript
-// @version      1.0.3
+// @version      1.0.4
 // @description  Highlight or block X accounts whose display names or bios match your emoji and text filters.
 // @author       geekzahra
 // @match        https://x.com/*
 // @match        https://twitter.com/*
 // @grant        GM_setValue
 // @grant        GM_getValue
+// @downloadURL  https://raw.githubusercontent.com/geekzahra/FeedBan/master/feedban.user.js
+// @updateURL    https://raw.githubusercontent.com/geekzahra/FeedBan/master/feedban.user.js
 // @run-at       document-idle
 // ==/UserScript==
 
