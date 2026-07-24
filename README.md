@@ -114,7 +114,7 @@ FeedBan stores your filters and settings in your userscript manager. It doesn’
 
 ### چطور ازش استفاده کنم؟
 
-&rlm;![بخش‌های مختلف پنل فیدبان](./assets/feedban-controls.png)
+&rlm;![بخش‌های مختلف پنل فارسی فیدبان](./assets/feedban-controls-fa.png)
 
 - &rlm;با **بررسی خودکار** می‌تونی فیدبان رو موقتاً متوقف یا دوباره روشن کنی.
 - &rlm;**حالت آزمایشی** فقط حساب‌های پیدا شده رو رنگی می‌کنه و کسی رو بلاک نمی‌کنه.
