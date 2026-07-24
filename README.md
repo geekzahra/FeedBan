@@ -8,8 +8,6 @@
 
 FeedBan helps clean up your X (Twitter) feed. Add an emoji or phrase, and it’ll look for it in account display names and visible bios.
 
-⭐ Like FeedBan? Give it a star on GitHub!
-
 It works in two modes:
 
 - **Dry Run:** highlights matches without blocking anyone.
@@ -71,6 +69,8 @@ Click **فا** for the Persian RTL interface. Click **EN** to switch back to Eng
 
 FeedBan stores your filters and settings in your userscript manager. It doesn’t collect your X login token or send your filters to a FeedBan server.
 
+⭐ Like FeedBan? Give it a star on GitHub!
+
 </div>
 
 ---
@@ -80,8 +80,6 @@ FeedBan stores your filters and settings in your userscript manager. It doesn’
 ## فارسی
 
 &rlm;فیدبان کمک می‌کنه فید X (توییتر) رو مرتب‌تر کنی. کافیه یه ایموجی یا عبارت بهش بدی تا اون رو توی اسم نمایشی یا بیوی قابل‌مشاهده حساب‌ها پیدا کنه.
-
-&rlm;⭐ فیدبان به کارت اومد؟ با یه ستاره توی گیت‌هاب حمایتش کن!
 
 &rlm;دو حالت داره:
 
@@ -145,5 +143,7 @@ FeedBan stores your filters and settings in your userscript manager. It doesn’
 - &rlm;**حساب رنگی شد ولی بلاک نشد؟** حالت آزمایشی رو خاموش کن و دلیلش رو توی **Recent activity** ببین.
 
 &rlm;فیدبان فیلترها و تنظیماتت رو داخل افزونه مدیریت اسکریپت نگه می‌داره. توکن ورود X رو جمع نمی‌کنه و فیلترهات رو هم به سرور جداگانه‌ای نمی‌فرسته.
+
+&rlm;⭐ فیدبان به کارت اومد؟ با یه ستاره توی گیت‌هاب حمایتش کن!
 
 </div>
