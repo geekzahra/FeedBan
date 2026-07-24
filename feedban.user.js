@@ -1,13 +1,15 @@
 // ==UserScript==
 // @name         FeedBan
 // @namespace    https://github.com/feedban/userscript
-// @version      1.0.4
+// @version      1.1.0
 // @description  Highlight or block X accounts whose display names or bios match your emoji and text filters.
 // @author       geekzahra
 // @match        https://x.com/*
 // @match        https://twitter.com/*
 // @grant        GM_setValue
 // @grant        GM_getValue
+// @grant        GM_getResourceURL
+// @resource     Vazirmatn https://cdn.jsdelivr.net/npm/@fontsource-variable/vazirmatn@5.3.0/files/vazirmatn-arabic-wght-normal.woff2
 // @downloadURL  https://raw.githubusercontent.com/geekzahra/FeedBan/master/feedban.user.js
 // @updateURL    https://raw.githubusercontent.com/geekzahra/FeedBan/master/feedban.user.js
 // @run-at       document-idle
@@ -32,6 +34,7 @@
     enabled: true,
     dryRun: true,
     collapsed: false,
+    language: 'en',
     filters: ['🇵🇸', '🎒'],
     totalBlocked: 0,
     activityLog: [],
@@ -63,6 +66,89 @@
     'messages', 'notifications', 'search', 'settings', 'share', 'signup',
   ]);
 
+  const I18N = Object.freeze({
+    en: {
+      panelLabel: 'FeedBan controls',
+      title: 'FeedBan',
+      switchLanguage: 'Switch to Persian',
+      expand: 'Expand FeedBan',
+      minimize: 'Minimize FeedBan',
+      automaticScanning: 'Automatic scanning',
+      enabled: 'FeedBan is on',
+      paused: 'FeedBan is paused',
+      automaticSwitch: 'Pause or resume FeedBan',
+      dryRun: 'Test / Dry Run',
+      dryRunHint: 'Highlight matches without blocking',
+      dryRunSwitch: 'Toggle dry-run mode',
+      filters: 'Filters',
+      filtersHint: 'Literal, case-insensitive text and emoji matching',
+      newFilter: 'New filter',
+      filterPlaceholder: 'Emoji or phrase…',
+      add: 'Add',
+      blockedSession: 'Blocked this session',
+      totalBlocked: 'Total blocked',
+      recentActivity: 'Recent activity',
+      footer: 'First install starts in safe dry-run mode.',
+      noActivity: 'No block attempts yet.',
+      unknownAccount: 'Unknown account',
+      recorded: 'Recorded',
+      removeFilter: 'Remove filter {filter}',
+      duplicateFilter: 'That filter already exists.',
+      filterLimit: 'The 100-filter limit has been reached.',
+      circuitPause: 'Safety pause active. Blocking resumes in {seconds}s.',
+      dryRunMatch: 'Dry-run match',
+      uiActionFailed: 'UI action failed',
+      cardLeftPage: 'Account card left the page',
+      moreUnavailable: 'More menu unavailable',
+      blockUnavailable: 'Block command unavailable',
+      alreadyBlocked: 'Already blocked',
+      confirmationUnavailable: 'Confirmation unavailable',
+      blocked: 'Blocked',
+      match: 'Match',
+      block: 'Block',
+    },
+    fa: {
+      panelLabel: 'کنترل‌های فیدبان',
+      title: 'فیدبان',
+      switchLanguage: 'تغییر زبان به انگلیسی',
+      expand: 'باز کردن فیدبان',
+      minimize: 'کوچک کردن فیدبان',
+      automaticScanning: 'بررسی خودکار',
+      enabled: 'فیدبان روشن است',
+      paused: 'فیدبان متوقف است',
+      automaticSwitch: 'توقف یا ادامه بررسی خودکار',
+      dryRun: 'حالت آزمایشی',
+      dryRunHint: 'پیدا کردن موارد بدون بلاک کردن',
+      dryRunSwitch: 'روشن یا خاموش کردن حالت آزمایشی',
+      filters: 'فیلترها',
+      filtersHint: 'پیدا کردن متن و ایموجی بدون تفاوت حروف بزرگ و کوچک',
+      newFilter: 'فیلتر جدید',
+      filterPlaceholder: 'ایموجی یا عبارت…',
+      add: 'افزودن',
+      blockedSession: 'بلاک‌شده در این نشست',
+      totalBlocked: 'مجموع بلاک‌شده‌ها',
+      recentActivity: 'فعالیت‌های اخیر',
+      footer: 'اولین اجرا با حالت آزمایشی امن شروع می‌شود.',
+      noActivity: 'هنوز تلاشی برای بلاک انجام نشده.',
+      unknownAccount: 'حساب ناشناس',
+      recorded: 'ثبت‌شده',
+      removeFilter: 'حذف فیلتر {filter}',
+      duplicateFilter: 'این فیلتر از قبل وجود دارد.',
+      filterLimit: 'حداکثر ۱۰۰ فیلتر قابل افزودن است.',
+      circuitPause: 'توقف ایمنی فعال است. بلاک کردن تا {seconds} ثانیه دیگر ادامه پیدا می‌کند.',
+      dryRunMatch: 'پیدا شده در حالت آزمایشی',
+      uiActionFailed: 'اجرای عملیات ناموفق بود',
+      cardLeftPage: 'کارت حساب از صفحه خارج شد',
+      moreUnavailable: 'منوی بیشتر در دسترس نیست',
+      blockUnavailable: 'گزینه بلاک در دسترس نیست',
+      alreadyBlocked: 'از قبل بلاک شده',
+      confirmationUnavailable: 'دکمه تأیید در دسترس نیست',
+      blocked: 'بلاک شد',
+      match: 'تطابق',
+      block: 'بلاک',
+    },
+  });
+
   const runtime = {
     settings: loadSettings(),
     sessionBlocked: 0,
@@ -89,6 +175,7 @@
       const merged = { ...DEFAULTS, ...(parsed && typeof parsed === 'object' ? parsed : {}) };
 
       merged.filters = sanitizeFilters(merged.filters);
+      merged.language = merged.language === 'fa' ? 'fa' : 'en';
       delete merged.actionDelayMs;
       merged.totalBlocked = Math.max(0, Number(merged.totalBlocked) || 0);
       merged.activityLog = Array.isArray(merged.activityLog)
@@ -132,6 +219,38 @@
     renderActivity();
   }
 
+  function t(key, variables = {}) {
+    const dictionary = I18N[runtime.settings.language] || I18N.en;
+    let text = dictionary[key] ?? I18N.en[key] ?? key;
+    for (const [name, value] of Object.entries(variables)) {
+      text = text.replaceAll(`{${name}}`, String(value));
+    }
+    return text;
+  }
+
+  function localizedNumber(value) {
+    return Number(value).toLocaleString(runtime.settings.language === 'fa' ? 'fa-IR' : 'en-US');
+  }
+
+  function getVazirmatnFontFace() {
+    try {
+      const resourceUrl = GM_getResourceURL('Vazirmatn');
+      if (!resourceUrl) return '';
+      return `
+        @font-face {
+          font-family: "Vazirmatn Variable";
+          src: url("${resourceUrl}") format("woff2");
+          font-style: normal;
+          font-weight: 100 900;
+          font-display: swap;
+        }
+      `;
+    } catch (error) {
+      console.warn('[FeedBan] Vazirmatn could not be loaded; using a system fallback.', error);
+      return '';
+    }
+  }
+
   // ---------------------------------------------------------------------------
   // 2. Shadow DOM UI injector
   // ---------------------------------------------------------------------------
@@ -143,9 +262,11 @@
     host.id = `${APP_ID}-host`;
     host.style.cssText = 'all: initial; position: fixed; z-index: 2147483647; right: 18px; bottom: 18px;';
     const shadow = host.attachShadow({ mode: 'open' });
+    const vazirmatnFontFace = getVazirmatnFontFace();
 
     shadow.innerHTML = `
       <style>
+        ${vazirmatnFontFace}
         :host {
           --fb-bg: #ffffff;
           --fb-surface: #f7f9f9;
@@ -169,7 +290,14 @@
           background: var(--fb-bg);
           color: var(--fb-text);
           box-shadow: 0 10px 35px rgb(0 0 0 / 24%);
-          font: 14px/1.35 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+          font-size: 14px;
+          line-height: 1.35;
+          text-align: start;
+        }
+        .panel[dir="rtl"] {
+          font-family: "Vazirmatn Variable", Vazirmatn, Tahoma, Arial, sans-serif;
+          line-height: 1.55;
         }
         .header {
           position: sticky;
@@ -184,6 +312,20 @@
           border-bottom: 1px solid var(--fb-border);
         }
         .title { font-size: 17px; font-weight: 800; letter-spacing: -.2px; }
+        .header-actions { display: flex; align-items: center; gap: 7px; }
+        .language-toggle {
+          direction: ltr;
+          min-width: 38px;
+          height: 30px;
+          padding: 0 9px;
+          border: 1px solid var(--fb-border);
+          border-radius: 999px;
+          background: transparent;
+          color: var(--fb-accent);
+          font-weight: 800;
+          cursor: pointer;
+        }
+        .language-toggle:hover { background: var(--fb-surface); }
         .icon-button {
           display: grid;
           width: 34px;
@@ -212,16 +354,18 @@
         .switch { position: relative; display: inline-flex; flex: 0 0 auto; }
         .switch input { position: absolute; opacity: 0; pointer-events: none; }
         .track {
+          position: relative;
           width: 46px;
           height: 26px;
-          padding: 3px;
           border-radius: 999px;
           background: var(--fb-border);
           cursor: pointer;
           transition: background .18s ease;
         }
         .track::after {
-          display: block;
+          position: absolute;
+          top: 3px;
+          left: 3px;
           width: 20px;
           height: 20px;
           border-radius: 50%;
@@ -232,6 +376,8 @@
         }
         .switch input:checked + .track { background: var(--fb-accent); }
         .switch input:checked + .track::after { transform: translateX(20px); }
+        .panel[dir="rtl"] .track::after { right: 3px; left: auto; }
+        .panel[dir="rtl"] .switch input:checked + .track::after { transform: translateX(-20px); }
         .chips {
           display: flex;
           flex-wrap: wrap;
@@ -308,25 +454,28 @@
           font-size: 12px;
         }
         .activity-item:last-child { border: 0; }
-        .activity-result { color: var(--fb-muted); text-align: right; }
+        .activity-result { color: var(--fb-muted); text-align: end; }
         .empty { padding: 7px 0; color: var(--fb-muted); font-size: 12px; }
         .footer { margin-top: 12px; color: var(--fb-muted); font-size: 11px; text-align: center; }
         :focus-visible { outline: 2px solid var(--fb-accent); outline-offset: 2px; }
       </style>
       <section class="panel" aria-label="FeedBan controls">
         <header class="header">
-          <div class="title">FeedBan <span class="title-long">🛡️</span></div>
-          <button class="icon-button collapse" type="button" aria-label="Minimize FeedBan" title="Minimize">−</button>
+          <div class="title"><span data-i18n="title">FeedBan</span> <span class="title-long">🛡️</span></div>
+          <div class="header-actions">
+            <button class="language-toggle" type="button" aria-label="Switch to Persian" title="Switch to Persian">فا</button>
+            <button class="icon-button collapse" type="button" aria-label="Minimize FeedBan" title="Minimize">−</button>
+          </div>
         </header>
         <div class="body">
           <div class="banner" role="status" aria-live="polite"></div>
 
           <div class="section row">
             <div>
-              <div class="label">Automatic scanning</div>
+              <div class="label" data-i18n="automaticScanning">Automatic scanning</div>
               <div class="hint master-state">FeedBan is on</div>
             </div>
-            <label class="switch" title="Pause or resume FeedBan">
+            <label class="switch master-switch" title="Pause or resume FeedBan">
               <input class="master-toggle" type="checkbox">
               <span class="track"></span>
             </label>
@@ -334,45 +483,45 @@
 
           <div class="section row">
             <div>
-              <div class="label">Test / Dry Run</div>
-              <div class="hint">Highlight matches without blocking</div>
+              <div class="label" data-i18n="dryRun">Test / Dry Run</div>
+              <div class="hint" data-i18n="dryRunHint">Highlight matches without blocking</div>
             </div>
-            <label class="switch" title="Toggle dry-run mode">
+            <label class="switch dry-switch" title="Toggle dry-run mode">
               <input class="dry-toggle" type="checkbox">
               <span class="track"></span>
             </label>
           </div>
 
           <div class="section">
-            <div class="label">Filters</div>
-            <div class="hint">Literal, case-insensitive text and emoji matching</div>
+            <div class="label" data-i18n="filters">Filters</div>
+            <div class="hint" data-i18n="filtersHint">Literal, case-insensitive text and emoji matching</div>
             <div class="chips"></div>
             <form class="add-filter">
               <input class="text-input filter-input" type="text" maxlength="80"
                 aria-label="New filter" placeholder="Emoji or phrase…" autocomplete="off">
-              <button class="primary-button" type="submit">Add</button>
+              <button class="primary-button" type="submit" data-i18n="add">Add</button>
             </form>
           </div>
 
           <div class="section metrics">
             <div class="metric">
               <span class="metric-value session-count">0</span>
-              <span class="metric-label">Blocked this session</span>
+              <span class="metric-label" data-i18n="blockedSession">Blocked this session</span>
             </div>
             <div class="metric">
               <span class="metric-value total-count">0</span>
-              <span class="metric-label">Total blocked</span>
+              <span class="metric-label" data-i18n="totalBlocked">Total blocked</span>
             </div>
           </div>
 
           <div class="section">
             <details>
-              <summary>Recent activity</summary>
+              <summary data-i18n="recentActivity">Recent activity</summary>
               <div class="activity"></div>
             </details>
           </div>
 
-          <div class="footer">First install starts in safe dry-run mode.</div>
+          <div class="footer" data-i18n="footer">First install starts in safe dry-run mode.</div>
         </div>
       </section>
     `;
@@ -384,9 +533,12 @@
       host,
       shadow,
       panel: $('.panel'),
+      languageToggle: $('.language-toggle'),
       collapse: $('.collapse'),
+      masterSwitch: $('.master-switch'),
       masterToggle: $('.master-toggle'),
       masterState: $('.master-state'),
+      drySwitch: $('.dry-switch'),
       dryToggle: $('.dry-toggle'),
       chips: $('.chips'),
       filterForm: $('.add-filter'),
@@ -404,6 +556,13 @@
 
   function bindUIEvents() {
     const ui = runtime.ui;
+
+    ui.languageToggle.addEventListener('click', () => {
+      runtime.settings.language = runtime.settings.language === 'fa' ? 'en' : 'fa';
+      saveSettings();
+      runtime.ui.banner.classList.remove('visible');
+      renderUI();
+    });
 
     ui.collapse.addEventListener('click', () => {
       runtime.settings.collapsed = !runtime.settings.collapsed;
@@ -449,7 +608,7 @@
         ui.filterInput.value = '';
         onFiltersChanged();
       } else {
-        showBanner(duplicate ? 'That filter already exists.' : 'The 100-filter limit has been reached.', 3500);
+        showBanner(t(duplicate ? 'duplicateFilter' : 'filterLimit'), 3500);
       }
     });
 
@@ -480,18 +639,42 @@
     const { settings } = runtime;
     const ui = runtime.ui;
 
+    applyLanguage();
     ui.panel.classList.toggle('collapsed', settings.collapsed);
     ui.collapse.textContent = settings.collapsed ? '+' : '−';
-    ui.collapse.setAttribute('aria-label', settings.collapsed ? 'Expand FeedBan' : 'Minimize FeedBan');
-    ui.collapse.title = settings.collapsed ? 'Expand' : 'Minimize';
+    ui.collapse.setAttribute('aria-label', t(settings.collapsed ? 'expand' : 'minimize'));
+    ui.collapse.title = t(settings.collapsed ? 'expand' : 'minimize');
     ui.masterToggle.checked = settings.enabled;
-    ui.masterState.textContent = settings.enabled ? 'FeedBan is on' : 'FeedBan is paused';
+    ui.masterState.textContent = t(settings.enabled ? 'enabled' : 'paused');
     ui.dryToggle.checked = settings.dryRun;
-    ui.sessionCount.textContent = String(runtime.sessionBlocked);
-    ui.totalCount.textContent = String(settings.totalBlocked);
+    ui.sessionCount.textContent = localizedNumber(runtime.sessionBlocked);
+    ui.totalCount.textContent = localizedNumber(settings.totalBlocked);
     renderFilters();
     renderActivity();
     renderCircuitState();
+  }
+
+  function applyLanguage() {
+    const ui = runtime.ui;
+    const isPersian = runtime.settings.language === 'fa';
+    const direction = isPersian ? 'rtl' : 'ltr';
+
+    ui.panel.dir = direction;
+    ui.panel.lang = isPersian ? 'fa' : 'en';
+    ui.panel.setAttribute('aria-label', t('panelLabel'));
+    ui.host.setAttribute('dir', direction);
+
+    ui.shadow.querySelectorAll('[data-i18n]').forEach((element) => {
+      element.textContent = t(element.dataset.i18n);
+    });
+
+    ui.languageToggle.textContent = isPersian ? 'EN' : 'فا';
+    ui.languageToggle.setAttribute('aria-label', t('switchLanguage'));
+    ui.languageToggle.title = t('switchLanguage');
+    ui.masterSwitch.title = t('automaticSwitch');
+    ui.drySwitch.title = t('dryRunSwitch');
+    ui.filterInput.placeholder = t('filterPlaceholder');
+    ui.filterInput.setAttribute('aria-label', t('newFilter'));
   }
 
   function renderFilters() {
@@ -509,7 +692,7 @@
       remove.className = 'chip-remove';
       remove.type = 'button';
       remove.dataset.filterIndex = String(index);
-      remove.setAttribute('aria-label', `Remove filter ${filter}`);
+      remove.setAttribute('aria-label', t('removeFilter', { filter }));
       remove.textContent = '×';
 
       chip.append(text, remove);
@@ -523,7 +706,7 @@
     if (!items.length) {
       const empty = document.createElement('div');
       empty.className = 'empty';
-      empty.textContent = 'No block attempts yet.';
+      empty.textContent = t('noActivity');
       runtime.ui.activity.replaceChildren(empty);
       return;
     }
@@ -533,26 +716,45 @@
       row.className = 'activity-item';
 
       const handle = document.createElement('span');
-      handle.textContent = item.handle ? `@${item.handle}` : 'Unknown account';
+      handle.textContent = item.handle ? `@${item.handle}` : t('unknownAccount');
+      handle.dir = 'ltr';
 
       const result = document.createElement('span');
       result.className = 'activity-result';
-      result.textContent = item.result || item.action || 'Recorded';
-      result.title = new Date(item.at).toLocaleString();
+      result.textContent = translateActivityText(item.result || item.action);
+      result.title = new Date(item.at).toLocaleString(runtime.settings.language === 'fa' ? 'fa-IR' : 'en-US');
 
       row.append(handle, result);
       return row;
     }));
   }
 
-  function showBanner(message, durationMs = 0) {
+  function translateActivityText(value) {
+    const keys = {
+      'Dry-run match': 'dryRunMatch',
+      'UI action failed': 'uiActionFailed',
+      'Account card left the page': 'cardLeftPage',
+      'More menu unavailable': 'moreUnavailable',
+      'Block command unavailable': 'blockUnavailable',
+      'Already blocked': 'alreadyBlocked',
+      'Confirmation unavailable': 'confirmationUnavailable',
+      Blocked: 'blocked',
+      match: 'match',
+      block: 'block',
+    };
+    return value ? t(keys[value] || value) : t('recorded');
+  }
+
+  function showBanner(message, durationMs = 0, kind = 'temporary') {
     if (!runtime.ui) return;
     runtime.ui.banner.textContent = message;
+    runtime.ui.banner.dataset.kind = kind;
     runtime.ui.banner.classList.add('visible');
     if (durationMs > 0) {
       const expected = message;
       window.setTimeout(() => {
-        if (runtime.ui?.banner.textContent === expected && Date.now() >= runtime.circuitPausedUntil) {
+        if (runtime.ui?.banner.textContent === expected && runtime.ui.banner.dataset.kind === kind
+          && Date.now() >= runtime.circuitPausedUntil) {
           runtime.ui.banner.classList.remove('visible');
         }
       }, durationMs);
@@ -563,8 +765,10 @@
     if (!runtime.ui) return;
     const remaining = runtime.circuitPausedUntil - Date.now();
     if (remaining > 0) {
-      showBanner(`Safety pause active. Blocking resumes in ${Math.ceil(remaining / 1000)}s.`);
-    } else if (runtime.ui.banner.textContent.startsWith('Safety pause')) {
+      showBanner(t('circuitPause', {
+        seconds: localizedNumber(Math.ceil(remaining / 1000)),
+      }), 0, 'circuit');
+    } else if (runtime.ui.banner.dataset.kind === 'circuit') {
       runtime.ui.banner.classList.remove('visible');
     }
   }

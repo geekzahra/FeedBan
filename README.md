@@ -29,12 +29,19 @@ FeedBan does **not** check the text inside posts. For example, if someone uses �
 
 You only need two clicks after installing Tampermonkey:
 
-1. Install **Tampermonkey** in your browser from [tampermonkey.net](https://www.tampermonkey.net/).
+1. Install **Tampermonkey** using the link for your browser:
+   - [Google Chrome](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
+   - [Mozilla Firefox](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/)
+   - [Microsoft Edge](https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd)
+   - [Safari on Mac](https://apps.apple.com/us/app/tampermonkey/id6738342400)
+   - [Opera — Tampermonkey Beta](https://addons.opera.com/en/extensions/details/tampermonkey-beta/)
 2. Click **[🛡️ Install FeedBan](https://raw.githubusercontent.com/geekzahra/FeedBan/master/feedban.user.js)**.
 3. Tampermonkey will open an installation page. Click **Install**.
 4. Open [x.com](https://x.com/) and refresh the page.
 
 You should now see the **FeedBan 🛡️** panel in the bottom-right corner.
+
+Click **فا** in the panel header for the full Persian, right-to-left interface. Click **EN** to switch back to English and left-to-right layout. FeedBan remembers your choice.
 
 If clicking the install link only shows a page of text, make sure Tampermonkey is installed and enabled, then click the link again. The same install link also works with Violentmonkey.
 
@@ -145,12 +152,19 @@ FeedBan does not collect X authorization tokens and does not send your filters t
 
 بعد از نصب Tampermonkey فقط با دو کلیک کار تمام است:
 
-1. از سایت [tampermonkey.net](https://www.tampermonkey.net/) افزونه **Tampermonkey** را روی مرورگرتان نصب کنید.
+1. با توجه به مرورگرتان، افزونه **Tampermonkey** را از لینک مناسب نصب کنید:
+   - [گوگل کروم](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
+   - [موزیلا فایرفاکس](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/)
+   - [مایکروسافت اج](https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd)
+   - [سافاری در مک](https://apps.apple.com/us/app/tampermonkey/id6738342400)
+   - [اپرا — نسخه بتای Tampermonkey](https://addons.opera.com/en/extensions/details/tampermonkey-beta/)
 2. روی **[🛡️ نصب فیدبان](https://raw.githubusercontent.com/geekzahra/FeedBan/master/feedban.user.js)** بزنید.
 3. صفحه نصب Tampermonkey باز می‌شود؛ روی **Install** بزنید.
 4. وارد [x.com](https://x.com/) شوید و صفحه را تازه‌سازی کنید.
 
 حالا باید پنل **فیدبان 🛡️** را پایین سمت راست صفحه ببینید.
+
+برای نمایش کامل فارسی و راست‌به‌چپ، روی **فا** در بالای پنل بزنید. برای برگشتن به زبان انگلیسی و حالت چپ‌به‌راست، روی **EN** بزنید. فیدبان انتخاب شما را به خاطر می‌سپارد.
 
 اگر با زدن لینک نصب فقط یک صفحه پر از متن دیدید، مطمئن شوید Tampermonkey نصب و روشن است و دوباره روی لینک بزنید. همین لینک با Violentmonkey هم کار می‌کند.
 
