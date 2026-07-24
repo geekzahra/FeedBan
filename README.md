@@ -15,8 +15,6 @@ It works in two modes:
 
 FeedBan checks names and bios—not the text inside posts.
 
-> **Quick heads-up:** Start with Dry Run. X doesn’t provide a guaranteed safe limit for automatic blocking, and scripted actions may put your account at risk.
-
 ### Install
 
 1. Install **Tampermonkey** for your browser:
@@ -69,6 +67,8 @@ Click **فا** for the Persian RTL interface. Click **EN** to switch back to Eng
 
 FeedBan stores your filters and settings in your userscript manager. It doesn’t collect your X login token or send your filters to a FeedBan server.
 
+> **Quick heads-up:** Start with Dry Run. X doesn’t provide a guaranteed safe limit for automatic blocking, and scripted actions may put your account at risk.
+
 ⭐ Like FeedBan? Give it a star on GitHub!
 
 </div>
@@ -87,8 +87,6 @@ FeedBan stores your filters and settings in your userscript manager. It doesn’
 - &rlm;**حالت خودکار:** سعی می‌کنه با منوهای خود X حساب پیدا شده رو بلاک کنه.
 
 &rlm;فیدبان فقط اسم و بیو رو بررسی می‌کنه، نه متن داخل پست‌ها رو.
-
-> &rlm;**یه نکته مهم:** اول با حالت آزمایشی شروع کن. X هیچ سرعت تضمین‌شده‌ای برای بلاک خودکار اعلام نکرده و کارهای خودکار ممکنه برای حسابت ریسک داشته باشن.
 
 ### نصب
 
@@ -143,6 +141,8 @@ FeedBan stores your filters and settings in your userscript manager. It doesn’
 - &rlm;**حساب رنگی شد ولی بلاک نشد؟** حالت آزمایشی رو خاموش کن و دلیلش رو توی **Recent activity** ببین.
 
 &rlm;فیدبان فیلترها و تنظیماتت رو داخل افزونه مدیریت اسکریپت نگه می‌داره. توکن ورود X رو جمع نمی‌کنه و فیلترهات رو هم به سرور جداگانه‌ای نمی‌فرسته.
+
+> &rlm;**یه نکته مهم:** اول با حالت آزمایشی شروع کن. X هیچ سرعت تضمین‌شده‌ای برای بلاک خودکار اعلام نکرده و کارهای خودکار ممکنه برای حسابت ریسک داشته باشن.
 
 &rlm;⭐ فیدبان به کارت اومد؟ با یه ستاره توی گیت‌هاب حمایتش کن!
 
