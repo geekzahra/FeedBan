@@ -25,8 +25,14 @@ FeedBan checks names and bios—not the text inside posts.
    - [Microsoft Edge](https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd)
    - [Safari on Mac](https://apps.apple.com/us/app/tampermonkey/id6738342400)
    - [Opera — Tampermonkey Beta](https://addons.opera.com/en/extensions/details/tampermonkey-beta/)
+
+   ![Tampermonkey extension installation page](./assets/tampermonkey-install.png)
+
 2. Click **[🛡️ Install FeedBan](https://raw.githubusercontent.com/geekzahra/FeedBan/master/feedban.user.js)**.
 3. Tampermonkey will open. Click **Install**.
+
+   ![FeedBan userscript installation page in Tampermonkey](./assets/feedban-userscript-install.png)
+
 4. Open [x.com](https://x.com/) and refresh the page.
 
 That’s it—the FeedBan panel should appear in the bottom-right corner.
@@ -82,8 +88,14 @@ FeedBan stores your filters and settings in your userscript manager. It doesn’
    - &rlm;[مایکروسافت اج](https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd)
    - &rlm;[سافاری در مک](https://apps.apple.com/us/app/tampermonkey/id6738342400)
    - &rlm;[اپرا — نسخه بتای Tampermonkey](https://addons.opera.com/en/extensions/details/tampermonkey-beta/)
+
+   &rlm;![صفحه نصب افزونه Tampermonkey](./assets/tampermonkey-install.png)
+
 2. &rlm;روی **[🛡️ نصب فیدبان](https://raw.githubusercontent.com/geekzahra/FeedBan/master/feedban.user.js)** بزن.
 3. &rlm;صفحه Tampermonkey که باز شد، **Install** رو بزن.
+
+   &rlm;![صفحه نصب فیدبان در Tampermonkey](./assets/feedban-userscript-install.png)
+
 4. &rlm;برو به [x.com](https://x.com/) و صفحه رو تازه‌سازی کن.
 
 &rlm;همین! حالا باید پنل فیدبان رو پایین سمت راست صفحه ببینی.
