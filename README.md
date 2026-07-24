@@ -118,13 +118,6 @@ FeedBan runs in your browser. Its settings, filters, counters, and activity hist
 
 FeedBan does not collect X authorization tokens and does not send your filters to a separate FeedBan server.
 
-### Project information
-
-- Current version: **1.0.3**
-- Author: **geekzahra**
-- File: [`feedban.user.js`](./feedban.user.js)
-- License: No license has been added yet.
-
 ---
 
 ## فارسی
@@ -242,10 +235,3 @@ FeedBan does not collect X authorization tokens and does not send your filters t
 فیدبان داخل مرورگر شما اجرا می‌شود. تنظیمات، فیلترها، شمارنده‌ها و سابقه فعالیت آن توسط افزونه مدیریت اسکریپت ذخیره می‌شوند.
 
 فیدبان توکن ورود X را جمع‌آوری نمی‌کند و فیلترهای شما را به سرور جداگانه‌ای برای فیدبان نمی‌فرستد.
-
-### اطلاعات پروژه
-
-- نسخه فعلی: **1.0.3**
-- سازنده: **geekzahra**
-- فایل اصلی: [`feedban.user.js`](./feedban.user.js)
-- مجوز: هنوز مجوزی به پروژه اضافه نشده است.
